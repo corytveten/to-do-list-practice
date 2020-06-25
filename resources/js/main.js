@@ -9,9 +9,17 @@ document.getElementById('add').addEventListener('click', function() {
     const value = document.getElementById('item').value;
     if (value) {
         addItemTodo(value);
+        document.getElementById('item').value = '';
     }
     console.log
 });
+
+function removeItem(e) {
+    const item = this.parentNode.parentNode;
+    const parent = item.parentNode;
+
+    parent.removeChild(item)
+}
 
 //Add new item to todo list
 function addItemTodo(text) {
@@ -27,6 +35,8 @@ function addItemTodo(text) {
     remove.classList.add('remove');
     remove.innerHTML = removeSVG;
 
+    //add click event for remove
+    remove.addEventListener('click', removeItem);
 
     const complete = document.createElement('button');
     complete.classList.add('complete');
